@@ -1,0 +1,21 @@
+.div img {
+  width: 60%;
+  height: 100%;
+}
+.div > div {
+  padding: 4%;
+}
+
+.div {
+  padding: 10px;
+  border: 2px solid black;
+  height: 900px;
+  width: 1800px;
+  margin: auto;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+

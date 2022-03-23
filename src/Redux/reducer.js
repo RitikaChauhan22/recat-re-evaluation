@@ -1,9 +1,9 @@
 import {
   GET_CLICKED_PRODUCT_FAILURE,
-  GET_CLICKED_PRODUCT_REQUEST,
+  GET_CLICKED_PRODUCT_REQ,
   GET_CLICKED_PRODUCT_SUCCESS,
   GET_PRODUCT_FAILURE,
-  GET_PRODUCT_REQUEST,
+  GET_PRODUCT_REQ,
   GET_PRODUCT_SUCCESS,
   SORT_PRODUCT,
 } from "./actionTypes";
@@ -17,8 +17,9 @@ const initState = {
 };
 
 export const Reducer = (state = initState, { type, payload }) => {
+  // add the switch statement for different actions
   switch (type) {
-    case GET_PRODUCT_REQUEST:
+    case GET_PRODUCT_REQ:
       return {
         ...state,
         isLoading: true,
@@ -46,20 +47,15 @@ export const Reducer = (state = initState, { type, payload }) => {
       else if (payload == "asc")
         return {
           ...state,
-          sortedProds: [...state.sortedProds
-            .sort((a, b) => 
-            a.price - b.price
-            )],
+          sortedProds: [...state.sortedProds.sort((a, b) => a.price - b.price)],
         };
       else if (payload == "desc")
         return {
           ...state,
-          sortedProds: [...state.sortedProds
-            .sort((a, b) => b.price - a.price
-            )],
+          sortedProds: [...state.sortedProds.sort((a, b) => b.price - a.price)],
         };
 
-    case GET_CLICKED_PRODUCT_REQUEST:
+    case GET_CLICKED_PRODUCT_REQ:
       return {
         ...state,
         isLoading: true,

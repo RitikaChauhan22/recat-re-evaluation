@@ -6,22 +6,20 @@ import { Products } from "../components/ProductsDashboard";
 import { SingleProductList } from "../components/SingleProduct";
 
 
+
+
 export const MainRoutes = () => {
 
   return (
 
     <Routes>
-
       <Route path="/" element={<App />}>
         <Route path="" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="products" element={<Products />} />
-        <Route path="products/" element={<SingleProductList />} />
-
+        <Route path="products/:id" element={<SingleProductList />} />
       </Route>
-
     </Routes>
-    
-  );
 
+  );
 };

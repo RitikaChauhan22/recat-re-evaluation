@@ -1,17 +1,17 @@
 import axios from "axios";
 import {
   GET_CLICKED_PRODUCT_FAILURE,
-  GET_CLICKED_PRODUCT_REQUEST,
+  GET_CLICKED_PRODUCT_REQ,
   GET_CLICKED_PRODUCT_SUCCESS,
   GET_PRODUCT_FAILURE,
-  GET_PRODUCT_REQUEST,
+  GET_PRODUCT_REQ,
   GET_PRODUCT_SUCCESS,
   SORT_PRODUCT,
 } from "./actionTypes";
 
 // action for get products request
 export const getProductsReq = () => ({
-  type: GET_PRODUCT_REQUEST,
+  type: GET_PRODUCT_REQ,
 });
 
 // action for get products success
@@ -28,22 +28,18 @@ export const getProductsFailure = () => ({
 });
 
 // thunk call to fetch products  list
-export const getproductsData = () => {
 
+
+export const getProductsData = () => {
   return (dispatch) => {
-
     dispatch(getProductsReq());
-    axios
-      .get("https://movie-fake-server.herokuapp.com/products")
-
+    axios.get("https://movie-fake-server.herokuapp.com/products")
       .then((res) => {
-        
         dispatch(getProductsSuccess(res.data));
       })
-
-      .catch((error) => {
+      .catch((err) => {
         dispatch(getProductsFailure());
-        console.log(error);
+        console.log(err);
       });
   };
 };
@@ -60,7 +56,7 @@ export const sortProducts = (payload) => ({
 //Clicked data request actions
 
 export const getClickedProductsReq = () => ({
-  type: GET_CLICKED_PRODUCT_REQUEST,
+  type: GET_CLICKED_PRODUCT_REQ,
 });
 
 // action for get products success
@@ -77,22 +73,23 @@ export const getClickedProductsFailure = () => ({
 });
 
 // thunk call to fetch products  list
-export const getClickedproductData = (id) => {
- 
-  return (dispatch) => {
-   
-    dispatch(getClickedProductsReq());
-    axios
-      .get(`https://movie-fake-server.herokuapp.com/products/${id}`)
-      .then((res) => {
-       
-        dispatch(getClickedProductsSuccess(res.data));
 
+
+export const getClickedProductData = (id) => {
+  return (dispatch) => {
+    dispatch(getClickedProductsReq());
+    axios.get(`https://movie-fake-server.herokuapp.com/products/${id}`)
+      .then((res) => {
+        dispatch(getClickedProductsSuccess(res.data));
       })
 
-      .catch((error) => {
+
+      .catch((err) => {
         dispatch(getClickedProductsFailure());
-        console.log(error);
+        console.log(err);
+
+
+        
       });
   };
 };

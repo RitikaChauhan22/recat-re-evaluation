@@ -6,6 +6,7 @@ const links = [
     title: "Home",
     link: "/",
   },
+  //   add the other link as well
   {
     title: "About",
     link: "/about",
@@ -15,14 +16,26 @@ const links = [
     link: "/products",
   },
 ];
+
+
 export const Navbar = () => {
+
+
   return (
-    <ul className={styles.navbar}>
+
+    <ul className={styles.nav}>
+
       {links.map((el,index) => (
+
         <Link to={el.link} key={index}>
           <li>{el.title}</li>
         </Link>
+
       ))}
+
     </ul>
+
+
+
   );
 };
