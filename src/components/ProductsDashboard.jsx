@@ -1,63 +1,55 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-
-import { getProductsReq } from "../Redux/actions";
-
+import { useNavigate } from "react-router-dom";
+import { getproductsData, sortProducts } from "../Redux/actions";
+import styles from "./products.css";
 export const Products = () => {
-  // to get all products list on component mounts;
+  // const data = useSelector((state) => state.products);
+  const data = useSelector((state) => state.sortedProds);
 
-  const products = useSelector((state) => state.allProducts.products);
+  const nav = useNavigate();
+  // to get all products list on component mounts
   const dispatch = useDispatch();
-  const fetchProducts = async () => {
-
-    const response = await axios
- .get("https://movie-fake-server.herokuapp.com/products")
-                    .catch((err) => {console.log(err)});
-                    dispatch(getProductsReq(response.data));
-
-  }
-  
-
-  
   useEffect(() => {
     //   dispatch an action to the store
     // dont make call here
     // handle it as thunk call in actions.js
-
-    fetchProducts();
-    // dispatch(getproductsData())
-  }, []);
-
-let data = products;
+    dispatch(getproductsData());
+  }, [dispatch]);
 
   //    sort by price
   const handleSort = (e) => {
     // dispach handle sort action to the store
+    // console.log(e.target.value)
+    dispatch(sortProducts(e.target.value.trim()));
   };
   return (
     <>
       <h2>Products</h2>
-      <select onChange={handleSort}>
+      <select id={styles.productsSelector }onChange={handleSort}>
         <option>--sort by --</option>
         <option value="asc">low to high</option>
         <option value="desc">high to low</option>
       </select>
-
-      <div className="products-list">
+      {console.log(data)}
+      <div id={styles.container} className="products-list">
+        {/* map throught th products  list and display the results */}
         {data &&
-          data.map((c) => {
-            return <div>
-             <div>
-               <img src= {c.image}/>
-             </div>
-             <h3> {c.brand}</h3>
-          
-              </div>;
+          data.map((el) => {
+            return (
+              <div
+                className={styles.card}
+                key={el.id}
+                onClick={() => nav(`/products/${el.id}`)}
+              >
+                <img src={el.image} alt="" height="85%" width="100%" />
+                {/* display the results here */
+                
+                  el.title}
+              </div>
+            );
           })}
       </div>
-  
-      
     </>
   );
 };
