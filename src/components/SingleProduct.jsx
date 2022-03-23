@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getClickedproductData } from "../Redux/actions";
-import "./singleProd.css";
+import styles from "./singleProd.module.css";
 
 export const SingleProductList = () => {
   const params = useParams();

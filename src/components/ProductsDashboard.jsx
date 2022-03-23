@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getproductsData, sortProducts } from "../Redux/actions";
-import "./products.css";
+import styles from "./products.module.css";
 export const Products = () => {
   // const data = useSelector((state) => state.products);
   const data = useSelector((state) => state.sortedProds);
