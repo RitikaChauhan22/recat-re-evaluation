@@ -1,17 +1,45 @@
+import ActionTypes from "./actionTypes";
+
+
 // action for get products request
-const getProductsReq = () => ({});
+export const getProductsReq = (products) => {
+
+  return {
+      type: ActionTypes.GET_PRODUCTS_REQUEST,
+      payload: products,
+  }
+
+};
 
 // action for get products success
 
-const getProductsSuccess = () => ({});
+export const getProductsSuccess = (products) => {
+
+    return {
+        type: ActionTypes.GET_PRODUCTS_SUCCESS,
+        payload: products,
+    }
+
+};
 
 // action for get products failure
 
-const getProductsFailure = () => ({});
+export const getProductsFailure = (products) => {
+
+    return {
+        type: ActionTypes.GET_PRODUCTS_FAILURE,
+        payload: false,
+    }
+
+};
 
 // thunk call to fetch products  list
-const getproductsData = () => ({});
+export const getproductsData = () => ({
+
+
+
+});
 
 // action object for sort  feature
 
-const sortProducts = () => ({});
+export const sortProducts = () => ({});

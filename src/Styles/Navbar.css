@@ -1,0 +1,17 @@
+#nav-container{
+    width:100%;
+    background-color:black;
+    color:white;
+    font-size: 2rem;
+    padding:25px;
+}
+
+.div{
+    margin-left: 5%;
+    cursor: pointer;
+}
+
+#main-container{
+    display: flex;
+    margin-left: 35%;
+}

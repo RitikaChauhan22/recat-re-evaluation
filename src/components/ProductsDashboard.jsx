@@ -1,13 +1,35 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+
+import { getProductsReq } from "../Redux/actions";
 
 export const Products = () => {
-  // to get all products list on component mounts
+  // to get all products list on component mounts;
+
+  const products = useSelector((state) => state.allProducts.products);
+  const dispatch = useDispatch();
+  const fetchProducts = async () => {
+
+    const response = await axios
+ .get("https://movie-fake-server.herokuapp.com/products")
+                    .catch((err) => {console.log(err)});
+                    dispatch(getProductsReq(response.data));
+
+  }
+  
+
+  
   useEffect(() => {
     //   dispatch an action to the store
     // dont make call here
     // handle it as thunk call in actions.js
-    dispatch(getproductsData())
-  }, [dispatch]);
+
+    fetchProducts();
+    // dispatch(getproductsData())
+  }, []);
+
+let data = products;
 
   //    sort by price
   const handleSort = (e) => {
@@ -21,13 +43,21 @@ export const Products = () => {
         <option value="asc">low to high</option>
         <option value="desc">high to low</option>
       </select>
+
       <div className="products-list">
-        {/* map throught th products  list and display the results */}
         {data &&
-          data.map(() => {
-            return <div>{/* display the results here */}</div>;
+          data.map((c) => {
+            return <div>
+             <div>
+               <img src= {c.image}/>
+             </div>
+             <h3> {c.brand}</h3>
+          
+              </div>;
           })}
       </div>
+  
+      
     </>
   );
 };

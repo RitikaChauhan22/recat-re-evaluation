@@ -1,0 +1,12 @@
+ const ActionTypes = {
+
+   GET_PRODUCTS_REQUEST: "GET_PRODUCTS_REQUEST",
+
+   GET_PRODUCT_SUCCESS: "GET_PRODUCT_SUCCESS",
+
+   GET_SELECTED_FAILURE: "GET_PRODUCT_FAILURE",
+
+
+};
+
+export default ActionTypes;
