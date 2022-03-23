@@ -1,11 +1,11 @@
 import {
-  GET_CLICKED_DATA_FAILURE,
-  GET_CLICKED_DATA_REQ,
-  GET_CLICKED_DATA_SUCCESS,
-  GET_DATA_FAILURE,
-  GET_DATA_REQ,
-  GET_DATA_SUCCESS,
-  SORT_DATA,
+  GET_CLICKED_PRODUCT_FAILURE,
+  GET_CLICKED_PRODUCT_REQUEST,
+  GET_CLICKED_PRODUCT_SUCCESS,
+  GET_PRODUCT_FAILURE,
+  GET_PRODUCT_REQUEST,
+  GET_PRODUCT_SUCCESS,
+  SORT_PRODUCT,
 } from "./actionTypes";
 
 const initState = {
@@ -17,14 +17,13 @@ const initState = {
 };
 
 export const Reducer = (state = initState, { type, payload }) => {
-  // add the switch statement for different actions
   switch (type) {
-    case GET_DATA_REQ:
+    case GET_PRODUCT_REQUEST:
       return {
         ...state,
         isLoading: true,
       };
-    case GET_DATA_SUCCESS:
+    case GET_PRODUCT_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -32,13 +31,13 @@ export const Reducer = (state = initState, { type, payload }) => {
         sortedProds: [...payload],
         isError: false,
       };
-    case GET_DATA_FAILURE:
+    case GET_PRODUCT_FAILURE:
       return {
         ...state,
         isLoading: false,
         isError: true,
       };
-    case SORT_DATA:
+    case SORT_PRODUCT:
       if (payload == "--sort by --")
         return {
           ...state,
@@ -47,27 +46,32 @@ export const Reducer = (state = initState, { type, payload }) => {
       else if (payload == "asc")
         return {
           ...state,
-          sortedProds: [...state.sortedProds.sort((a, b) => a.price - b.price)],
+          sortedProds: [...state.sortedProds
+            .sort((a, b) => 
+            a.price - b.price
+            )],
         };
       else if (payload == "desc")
         return {
           ...state,
-          sortedProds: [...state.sortedProds.sort((a, b) => b.price - a.price)],
+          sortedProds: [...state.sortedProds
+            .sort((a, b) => b.price - a.price
+            )],
         };
 
-    case GET_CLICKED_DATA_REQ:
+    case GET_CLICKED_PRODUCT_REQUEST:
       return {
         ...state,
         isLoading: true,
       };
-    case GET_CLICKED_DATA_SUCCESS:
+    case GET_CLICKED_PRODUCT_SUCCESS:
       return {
         ...state,
         isLoading: false,
         clickedProd: payload,
         isError: false,
       };
-    case GET_CLICKED_DATA_FAILURE:
+    case GET_CLICKED_PRODUCT_FAILURE:
       return {
         ...state,
         isLoading: false,

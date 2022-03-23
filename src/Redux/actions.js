@@ -1,45 +1,49 @@
 import axios from "axios";
 import {
-  GET_CLICKED_DATA_FAILURE,
-  GET_CLICKED_DATA_REQ,
-  GET_CLICKED_DATA_SUCCESS,
-  GET_DATA_FAILURE,
-  GET_DATA_REQ,
-  GET_DATA_SUCCESS,
-  SORT_DATA,
+  GET_CLICKED_PRODUCT_FAILURE,
+  GET_CLICKED_PRODUCT_REQUEST,
+  GET_CLICKED_PRODUCT_SUCCESS,
+  GET_PRODUCT_FAILURE,
+  GET_PRODUCT_REQUEST,
+  GET_PRODUCT_SUCCESS,
+  SORT_PRODUCT,
 } from "./actionTypes";
 
 // action for get products request
 export const getProductsReq = () => ({
-  type: GET_DATA_REQ,
+  type: GET_PRODUCT_REQUEST,
 });
 
 // action for get products success
 
 export const getProductsSuccess = (payload) => ({
-  type: GET_DATA_SUCCESS,
+  type: GET_PRODUCT_SUCCESS,
   payload,
 });
 
 // action for get products failure
 
 export const getProductsFailure = () => ({
-  type: GET_DATA_FAILURE,
+  type: GET_PRODUCT_FAILURE,
 });
 
 // thunk call to fetch products  list
 export const getproductsData = () => {
+
   return (dispatch) => {
+
     dispatch(getProductsReq());
     axios
       .get("https://movie-fake-server.herokuapp.com/products")
+
       .then((res) => {
-        // console.log(res.data);
+        
         dispatch(getProductsSuccess(res.data));
       })
-      .catch((err) => {
+
+      .catch((error) => {
         dispatch(getProductsFailure());
-        console.log(err);
+        console.log(error);
       });
   };
 };
@@ -47,7 +51,7 @@ export const getproductsData = () => {
 // action object for sort  feature
 
 export const sortProducts = (payload) => ({
-  type: SORT_DATA,
+  type: SORT_PRODUCT,
   payload,
 });
 
@@ -56,35 +60,39 @@ export const sortProducts = (payload) => ({
 //Clicked data request actions
 
 export const getClickedProductsReq = () => ({
-  type: GET_CLICKED_DATA_REQ,
+  type: GET_CLICKED_PRODUCT_REQUEST,
 });
 
 // action for get products success
 
 export const getClickedProductsSuccess = (payload) => ({
-  type: GET_CLICKED_DATA_SUCCESS,
+  type: GET_CLICKED_PRODUCT_SUCCESS,
   payload,
 });
 
 // action for get products failure
 
 export const getClickedProductsFailure = () => ({
-  type: GET_CLICKED_DATA_FAILURE,
+  type: GET_CLICKED_PRODUCT_FAILURE,
 });
 
 // thunk call to fetch products  list
 export const getClickedproductData = (id) => {
+ 
   return (dispatch) => {
+   
     dispatch(getClickedProductsReq());
     axios
       .get(`https://movie-fake-server.herokuapp.com/products/${id}`)
       .then((res) => {
-        // console.log(res.data);
+       
         dispatch(getClickedProductsSuccess(res.data));
+
       })
-      .catch((err) => {
+
+      .catch((error) => {
         dispatch(getClickedProductsFailure());
-        console.log(err);
+        console.log(error);
       });
   };
 };

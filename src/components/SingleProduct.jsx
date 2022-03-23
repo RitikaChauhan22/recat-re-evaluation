@@ -13,34 +13,43 @@ export const SingleProductList = () => {
   useEffect(() => {
     dispatch(getClickedproductData(params.id));
   }, []);
+
+
   return (
+
     <div className={styles.container}>
+
       <img src={data.image} alt={data.title} />
+
       <div>
         <h1
           style={{
-            color: `${data.category == "women" ? "purple" : "teal"}`,
-            border: `2px dashed ${
-              data.category == "women" ? "teal" : "purple"
+            color: `${data.category == "women" ? "black" : "black"}`,
+            border: `2px solid ${
+              data.category == "women" ? "black" : "black"
             }`,
           }}
         >
           {data.title}
         </h1>
+
         <h2
           style={{
-            color: `${data.category == "women" ? "teal" : "purple"}`,
-            border: `2px dashed ${
-              data.category == "women" ? "purple" : "teal"
+            color: `${data.category == "women" ? "black" : "black"}`,
+            border: `1px solid ${
+              data.category == "women" ? "black" : "black"
             }`,
           }}
         >
-          Rs {data.price}
+          Rs- {data.price}
         </h2>
+
         <p>Brand: {data.brand}</p>
         <p>Category: {data.category}</p>
 
-        {console.log(data)}
+        
+
+
       </div>
     </div>
   );
