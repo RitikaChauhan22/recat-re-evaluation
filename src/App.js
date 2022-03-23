@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { Navbar } from "./components/Navbar";
+import { Navbar } from "./components/Navbar.module";
 import { Outlet } from "react-router-dom";
 
 function App() {
